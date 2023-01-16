@@ -1,0 +1,376 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 17 août 2014, 17:45:36
+    Author     : Fab
+*/
+@font-face { 
+    font-family: 'CranberryGin'; 
+    src: url('../asset/cranberry gin.ttf'); 
+    /*src: url('../asset/Geo.woff') format('woff');for IE*/
+}
+
+html, body, canvas {
+    width: 100%; 
+    height: 100%; 
+    padding: 0; 
+    margin: 0; 
+    overflow: hidden;   
+}
+
+body {
+    font-family: ubuntu, helvetica, arial;
+    background: rgba(195, 25, 52, 1);
+    //background: black;   
+}
+
+#blackscreen {
+    position: absolute;
+    display: block;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(195, 25, 52, 1);
+    z-index: 2;
+}
+
+#loading {
+    margin-left: 50%;
+    position: relative;
+    color: white;
+    margin-top: 15%;
+    left: -20px;
+}
+
+#loadinggif {
+    position: relative;
+    background-image: url(../css/preloader.gif);
+    height: 64px;
+    width: 64px;
+    background-repeat:no-repeat;
+    bottom: -10px;
+}
+
+#lvlstart {
+    top: 0;
+    right: 0;
+    position: absolute;
+    height: 10%;
+    width: 30%;
+    text-align: center;
+    //background-color: rgba(10, 10, 10, .5);
+    background-image: linear-gradient(to right,rgba(0,0,0,0) 10%,rgba(0,0,0,0.5) 100%);
+    //-webkit-filter: blur(10px);
+    transition: width 2s ease;
+}
+
+#lvlstart div {
+    transform: scale(1.5,2);
+    bottom: 15%;
+    padding-top: 10%;
+    position: relative
+}
+
+#lvlstart span{   
+    font-size: 4vh;
+    font-weight: bold;
+    text-shadow: #99FFCC 0px 0px 10px;
+    text-shadow: 0px 0px 10px rgba(250, 250, 250, 0.9);
+    color: rgba(250, 250, 250, 1);
+    opacity: 0.9;
+    transition: color 2s ease;
+}
+
+#lvlstart:hover {
+    width: 45%;
+    transition: width 5000ms cubic-bezier(.51,1,.98,.78);
+}
+
+#lvlstart:hover >div span{
+    width: 45%;
+    color: rgba(10, 10, 10, 0.1);
+    transition: color 5s ease;
+}
+
+#stagename {
+    top: 40%;
+    left: -100%;
+    position: absolute;
+    height: 20%;
+    width: 100%;
+    text-align: center;
+    background-image: linear-gradient(to right,rgba(0,0,0,0) 10%,rgba(124,86,30,0.8) 100%);
+    //-webkit-filter: blur(10px);
+    //transition: width 2s ease;   
+}
+
+#stagename.move {
+    /*left: 100%;
+    transition: left 3s cubic-bezier(0.06,0.88,0.95,0.57);
+    transition-delay: 1s;*/
+    /*for Chrome */
+    -webkit-animation:mym 3s cubic-bezier(0.06,0.88,0.95,0.57);
+    -webkit-animation-play-state:running;
+    /*for ie10> ,FF*/
+    animation:mym 3s cubic-bezier(0.06,0.88,0.95,0.57);
+    animation-play-state:running;
+}
+@-webkit-keyframes mym {/*for Chrome */
+   from {left:-100%} 
+   to {left: 100%;}
+}
+@keyframes mym {/*for ie10> ,FF*/
+   from {left:-100%} 
+   to {left: 100%;}
+}
+
+#stagename span{   
+    font-size: 4vh;
+    font-weight: bold;
+    color: rgba(250, 250, 250, 1);
+}
+
+#gamestart {
+    bottom: 0;
+    display: block;
+    /*height: 80px;
+    width: 300px;*/
+    height: 10%;
+    width: 40%;
+    padding-top: 5%;
+    border-radius: 10px;
+    margin-left: 30%;
+    margin-bottom: 40%;
+    background-color: darkgreen;
+    position: absolute;
+    text-align: center; 
+}
+
+#gamestart:hover {
+    background-color: darkolivegreen;
+    cursor: pointer;
+}
+
+#gamestart span{
+    font-size: 4vh;
+    font-weight: bold;   
+    color: whitesmoke;
+    //position: relative;
+}
+
+#screenpause {
+    display: none;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(10, 10, 10, .5);
+    text-align: center;
+    position: absolute;;
+}
+
+#screenpause span {
+    top: 40%;
+    font-weight: bold;
+    font-size: 4em;
+    color: white;
+    position: relative;
+}
+
+#gameover {
+    top: 0;
+    position: absolute;
+    height: 20%;
+    width: 100%;
+    display: none;
+    background-color: rgba(10, 10, 10, .5);
+    //margin-left: 30%;
+    margin-top: 30%; 
+    text-align: center; 
+    //opacity: 0.4;
+}
+
+#losewin {
+    font-weight: bold;
+    font-size: 2.5em;
+    color: white; 
+    opacity: 1;
+}
+
+#stats {
+    right: 10px;
+    bottom:5px;
+    color: white;
+    position: absolute;
+}
+
+#commande {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: 1;
+}
+
+.com {
+    height: 18px;
+    text-align: center;
+    width: 40px;
+    padding: 24px 15px;
+    margin: 5px;
+    background-color: rgba(25, 25, 25, 0.5);
+    color: white;
+    /*position: relative;*/
+    float:left;
+    border-radius: 15px;
+    border-width:2px;
+    border-color: white;
+    border-style:solid;
+    right: 5px;
+}
+
+#commande .com {
+    float:left;
+}
+
+#menu {
+    /*height: auto;*/
+    width: 200px;
+    left: 0;
+    /*background-color: rgba(25, 25, 25, 1);*/
+    position: absolute;
+    z-index: 1;
+    top: 200px;
+}
+
+#scorelife {
+    background: url(../asset/scoremenumin.png) no-repeat;
+    width: 400px;
+    height: 92px;
+    margin-top: 2%;
+    margin-right: 5%;
+    right: 0;
+    position: absolute;
+}
+
+#renderCanvas.filter{
+   -webkit-filter: blur(3px);
+    -ms-filter: blur(3px);
+    filter: url("../css/blur.svg#blur"); 
+}
+
+#score {
+    font-size: 2em;
+    font-family: 'CranberryGin', regular, serif;
+    color: #F4F4F4;
+    margin-right: 114px;
+    position: absolute;
+    right: 0;
+    margin-top: -3px;
+}
+
+#life {
+    font-size: 2.5em;
+    font-family: 'CranberryGin', regular, serif;
+    color: #F4F4F4;
+    margin-left: 222px;
+    margin-top: 34px;
+    position: absolute;
+}
+
+.camselect {
+    height: auto;
+    text-align: center;
+    width: 80%;
+    padding: 12px;
+    margin: 5px;
+    background-color: rgba(25, 25, 25, 0.5);
+    color: white;
+    position: relative;
+    float:left;
+    border-radius: 15px;
+    border-width:2px;
+    border-color: white;
+    border-style:solid;
+    right: 5px;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: pointer;
+}
+
+.camselect:hover {
+    background-color: rgba(25, 25, 25, 1);
+}
+
+#datetime {
+    right: 80px;
+    bottom:70px;
+    position: absolute;
+    color: white;
+}
+
+#blackleftmarge {
+    top: 0;
+    width: 100%;
+    height: 100%;
+    left: -100%;
+    position: absolute;
+    background-color: rgba(195, 25, 52, 1);
+}
+
+#blackrightmarge {
+    top: 0;
+    width: 100%;
+    height: 100%;
+    left: 100%;
+    position: absolute;
+    background-color: rgba(195, 25, 52, 1);
+}
+
+/*see this URL for more explanation about ratio:
+http://stackoverflow.com/questions/20590239/maintain-aspect-ratio-of-div-but-fill-screen-width-and-height-in-css*/
+
+#winc {
+    //display: inline-block;
+    position: absolute; 
+    width: 100vw;
+    height: 133vw; /* 100/133=0.75*/
+    max-height: 100vh;
+    max-width: 75vh; /* 75/100=0.75*/
+    margin: auto;
+    top:0;bottom: 0; /*vertical center*/
+    left:0;right: 0; /*horizontal center*/
+    
+}
+
+/*
+#winc {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-top: 56.25%;
+    margin-left:0%;
+}
+
+#winc canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+*/
+
+/* ==========================================================================
+   Media Queries
+   ========================================================================== */
+/* 48em = 768px ; 36em = 576px */
+@media only screen and (max-width: 36em) {
+
+    #gamestart span{
+        font-size: 4vw;
+    }
+
+}

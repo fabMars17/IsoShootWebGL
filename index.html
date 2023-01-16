@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <meta charset="UTF-8">
+        <meta http-equiv="x-ua-compatible" content="IE=Edge">
+        <title>Arcade WebGL</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+
+        <link rel="stylesheet" href="css/asteroidwebgl.css">
+
+        <script src="babylon.1.13.js"></script>
+        <script src="js/easingfunction.js"></script><!--
+        <script src="GamepadInput.js"></script>-->
+    </head>
+
+    <body>
+        <div id="blackscreen">
+            <div id="loading">
+                <span>loading...</span>
+                <div id="loadinggif"></div>
+            </div>      
+        </div>
+        <div id="commande">
+            <span id="com1" class="com">S</span>
+            <span id="com2" class="com">F</span>
+            <span id="com3" class="com">Space</span>
+        </div>  
+        <div id="menu">
+            <span id="cam1" class="camselect">camera 1</span>
+            <span id="cam2" class="camselect">camera 2</span>
+            <span id="cam3" class="camselect">camera 3</span>
+            <span id="soundbg" class="camselect">sound BG ON</span>
+            <span id="soundfx" class="camselect">sound FX ON</span>
+            <span id="xboxButtonPressed" class="camselect"></span>
+            <span id="xboxButtonReleased" class="camselect"></span>
+            <span id="gamepad2" class="camselect">0</span>
+        </div>
+
+        <div id="winc">
+            <canvas id="renderCanvas" class="">Your browser don't support canvas</canvas>
+            <div  id="gameover">
+                <span id="losewin">GAME OVER</span>
+            </div>
+            <div  id="lvlstart">
+                <div>
+                    <span id="lvl">01</span>
+                </div>
+            </div>
+            <div  id="stagename" class="">
+                <div>
+                    <span>STAGE 01</span>
+                </div>
+            </div>
+            <div id="gamestart">
+                <span>New Game</span>
+            </div>
+            <div id="blackleftmarge"></div> 
+            <div id="blackrightmarge"></div>
+        </div>
+
+        <div id="scorelife">
+            <span id="score">0</span>
+            <span id="life">20</span>
+        </div>
+        <div id="screenpause">
+            <span>PAUSE</span>
+        </div>
+        
+        <span id="stats"></span>
+        <span id="datetime"></span>
+        
+        <audio id="bgs" type="audio/ogg">
+            <source src="./asset/sound/DSTServo.ogg">
+      Your browser does not support the audio element.
+      </audio>
+        
+        
+        
+    </body>
+    <script src="js/asteroidwebgl.js"></script>
+    <script src="Gamepad360v2.js"></script>
+</html>
